@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <title>
+        <ui:insert name="title">
+            Livros de Programação, Mobile, Design, UX e Statups | Editora Casa do Código - Casa do Código
+        </ui:insert>
+    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet" />
+    <h:outputStylesheet library="css" name="variables.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+
+    <!-- Favicon -->
+    <link rel="icon" href="#{resource['img/favicon.png']}" type="image/x-icon" />
+    <link rel="shortcut icon" href="#{resource['img/favicon.png']}" type="image/x-icon" />
+</h:head>
+
+<h:body>
+
+    <ui:insert name="header">
+        <ui:include src="header.xhtml" />
+    </ui:insert>
+
+    <div class="content">
+        <ui:insert name="content" />
+    </div>
+
+    <ui:insert name="footer">
+        <ui:include src="footer.xhtml" />
+    </ui:insert>
+</h:body>
+
+</html>
