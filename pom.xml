@@ -97,6 +97,13 @@
       <version>1.5.13</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>4.31.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -115,6 +122,27 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.4.0</version>
       </plugin>
+
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>4.31.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>update</goal> <!-- ou 'rollback' ou 'status' -->
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <changeLogFile>db/changelog/db.changelog-master.xml</changeLogFile>
+          <url>jdbc:postgresql://localhost:5432/casadocodigo</url>
+          <username>root</username>
+          <password>root</password>
+          <driver>org.postgresql.Driver</driver>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 </project>
