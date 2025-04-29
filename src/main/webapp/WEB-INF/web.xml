@@ -8,9 +8,20 @@
     <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>
 
+  <!-- BEGIN Listeners -->
+
   <listener>
     <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
   </listener>
+
+  <!-- END Listeners -->
+
+  <resource-ref>
+    <res-ref-name>PostgreSQL DataSource</res-ref-name>
+    <res-ref-name>jdbc/PostgresDS</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 
   <context-param>
     <param-name>jakarta.faces.PROJECT_STAGE</param-name>
