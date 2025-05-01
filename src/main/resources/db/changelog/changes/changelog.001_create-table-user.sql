@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset victor.hugo:changelog.create-table-user
+--changeset victor.hugo:changelog.001_create-table-user
 CREATE TABLE public."tb_user" (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -12,4 +12,4 @@ CREATE TABLE public."tb_user" (
     last_update_at TIMESTAMP,
     active bool DEFAULT false
 );
---rollback DROP TABLE public.user;
+--rollback DROP TABLE public."tb_user";

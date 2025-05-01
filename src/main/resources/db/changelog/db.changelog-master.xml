@@ -6,7 +6,11 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-  <include file="db/changelog/changes/changelog.create-table-user.sql" />
-  <include file="db/changelog/changes/changelog.insert-user.sql" />
+  <include file="/db/changelog/changes/changelog.001_create-table-user.sql" />
+  <include file="/db/changelog/changes/changelog.002_create-table-role.sql" />
+  <include file="/db/changelog/changes/changelog.003_create-table-user_roles.sql" />
+  <include file="/db/changelog/changes/changelog.004_insert-user.sql" />
+  <include file="/db/changelog/changes/changelog.005_insert-roles.sql" />
+  <include file="/db/changelog/changes/changelog.006_insert-user-roles.sql" />
 
 </databaseChangeLog>
