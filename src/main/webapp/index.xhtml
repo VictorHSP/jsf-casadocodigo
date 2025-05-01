@@ -5,12 +5,20 @@
 
     <ui:define name="content">
         <h1>Bem-vindo à Minha Página!</h1>
-        <h:outputText value="Aqui vai o conteúdo principal." />
-        <h:outputText value="#{userBean.user.id}" />
-        <h:outputText value="#{userBean.user.name}" />
-        <h:outputText value="#{userBean.user.username}" />
-        <h:outputText value="#{userBean.user.email}" />
-        <h:outputText value="#{userBean.user.email}" />
+        <h:outputText value="Aqui vai o conteúdo principal." /> <br/>
+        <h:outputText value="#{userBean.user.id}" /> <br/>
+        <h:outputText value="#{userBean.user.name}" /> <br/>
+        <h:outputText value="#{userBean.user.username}" /> <br/>
+        <h:outputText value="#{userBean.user.email}" /> <br/>
+        <h:outputText value="#{userBean.user.password}" /> <br/>
+        <h:outputText value="#{userBean.user.locale}" /> <br/>
+        <h:outputText value="#{userBean.user.createdAt}" /> <br/>
+        <h:outputText value="#{userBean.user.lastUpdated}" /> <br/>
+        <h:outputText value="#{userBean.user.active}" /> <br/>
+        <hr/>
+        <ui:repeat value="#{userBean.user.roles}" var="role">
+            <h:outputText value="#{role.role}" /> <br/>
+        </ui:repeat>
     </ui:define>
 
 </ui:composition>
