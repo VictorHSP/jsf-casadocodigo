@@ -5,16 +5,8 @@
   version="6.0">
 
   <welcome-file-list>
-    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>login.xhtml</welcome-file>
   </welcome-file-list>
-
-  <!-- BEGIN Listeners -->
-
-  <listener>
-    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-  </listener>
-
-  <!-- END Listeners -->
 
   <resource-ref>
     <res-ref-name>PostgreSQL DataSource</res-ref-name>
@@ -53,5 +45,37 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+
+
+  <security-role>
+    <role-name>ADMIN</role-name>
+  </security-role>
+
+  <security-role>
+    <role-name>CUSTOMER</role-name>
+  </security-role>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Admin Area</web-resource-name>
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+
+    <auth-constraint>
+      <role-name>ADMIN</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Customer Area</web-resource-name>
+      <url-pattern>/customer/*</url-pattern>
+    </web-resource-collection>
+
+    <auth-constraint>
+      <role-name>ADMIN</role-name>
+      <role-name>CUSTOMER</role-name>
+    </auth-constraint>
+  </security-constraint>
 
 </web-app>
