@@ -19,6 +19,15 @@
         <ui:repeat value="#{userBean.user.roles}" var="role">
             <h:outputText value="#{role.role}" /> <br/>
         </ui:repeat>
+
+        <hr/>
+        <br/>
+
+        <h:form>
+            <h:commandButton value="Logout" action="#{loginBean.logout()}"/>
+        </h:form>
+
+
     </ui:define>
 
 </ui:composition>

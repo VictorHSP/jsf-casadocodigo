@@ -1,10 +1,10 @@
 package br.com.casadocodigo.service;
 
-import br.com.casadocodigo.infra.Transactional;
 import br.com.casadocodigo.model.User;
 import br.com.casadocodigo.repository.UserRepository;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 

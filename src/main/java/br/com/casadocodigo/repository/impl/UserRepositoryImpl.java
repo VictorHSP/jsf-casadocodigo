@@ -3,14 +3,20 @@ package br.com.casadocodigo.repository.impl;
 import br.com.casadocodigo.model.User;
 import br.com.casadocodigo.repository.UserRepository;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceContext;
 import java.util.Collection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RequestScoped
 public class UserRepositoryImpl implements UserRepository {
 
-  @Inject
+
+  private static final Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
+
+  @PersistenceContext
   private EntityManager entityManager;
 
   @Override
@@ -42,7 +48,13 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public User findByEmail(String email) {
-      return entityManager.createQuery("select u from User u where u.email = :email", User.class)
+    try {
+      return entityManager.createQuery("select u from User u left join fetch u.roles where u.email = :email", User.class)
           .setParameter("email", email).getSingleResult();
+    }catch (NoResultException ex) {
+      logger.warn("Not found any user with this email {}",email, ex);
+    }
+
+    return null;
   }
 }
