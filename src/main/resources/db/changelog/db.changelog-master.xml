@@ -20,7 +20,7 @@
   <include file="/db/changelog/changes/changelog.012_create-table-credit-card-order.sql" />
   <include file="/db/changelog/changes/changelog.013_create-table-pix-order.sql" />
   <include file="/db/changelog/changes/changelog.014_create-table-book-details.sql" />
-<!--  <include file="/db/changelog/changes/changelog._insert-user.sql" />-->
-<!--  <include file="/db/changelog/changes/changelog._insert-user-roles.sql" />-->
+  <include file="/db/changelog/changes/changelog.015_insert-user.sql" />
+  <include file="/db/changelog/changes/changelog.016_insert-user-roles.sql" />
 
 </databaseChangeLog>
