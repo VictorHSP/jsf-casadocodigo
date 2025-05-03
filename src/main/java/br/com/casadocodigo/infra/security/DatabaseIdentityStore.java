@@ -12,7 +12,6 @@ import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
 import jakarta.security.enterprise.identitystore.IdentityStore;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,7 +29,7 @@ public class DatabaseIdentityStore implements IdentityStore {
 
     if (Objects.nonNull(user) && verifyPassword(userNamePasswordCredential.getPasswordAsString(), user.getPassword())) {
       Set<String> roles = user.getRoles().stream()
-          .map(Role::getRole).collect(Collectors.toSet());
+          .map(Role::getName).collect(Collectors.toSet());
       return new CredentialValidationResult(new CustomPrincipal(user), roles);
     }
 

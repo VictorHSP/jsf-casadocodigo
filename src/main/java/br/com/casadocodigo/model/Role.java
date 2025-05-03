@@ -15,8 +15,8 @@ import java.util.Set;
 @Table(name = "tb_role")
 public class Role extends BaseEntity<Long> {
 
-  @Column(name = "role", length = 100)
-  private String role;
+  @Column(name = "name", length = 100)
+  private String name;
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_at")
@@ -27,9 +27,9 @@ public class Role extends BaseEntity<Long> {
 
   public Role() {}
 
-  public Role(Long id, String role) {
+  public Role(Long id, String name) {
     this.id = id;
-    this.role = role;
+    this.name = name;
   }
 
   @Override
@@ -42,12 +42,12 @@ public class Role extends BaseEntity<Long> {
     this.id = id;
   }
 
-  public String getRole() {
-    return role;
+  public String getName() {
+    return name;
   }
 
-  public void setRole(String role) {
-    this.role = role;
+  public void setName(String role) {
+    this.name = role;
   }
 
   public LocalDateTime getCreatedAt() {
