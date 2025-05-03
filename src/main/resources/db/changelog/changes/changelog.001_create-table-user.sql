@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS public."tb_user" (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_update_at TIMESTAMP,
     address VARCHAR(100) NULL,
+    number SMALLINT NULL,
     zipcode VARCHAR(8) NULL,
     complement VARCHAR(100) NULL,
     neighborhood VARCHAR(45) NULL,
