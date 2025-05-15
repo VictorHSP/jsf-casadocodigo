@@ -1,0 +1,18 @@
+<!-- /components/breadcrumb.xhtml -->
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="jakarta.faces.facelets"
+              xmlns:h="jakarta.faces.html">
+
+   <nav aria-label="breadcrumb" class="breadcrumb">
+      <ol>
+         <ui:repeat value="#{breadCrumbBean.breadCrumbs}" var="item" varStatus="loop">
+            <li>
+               <h:link outcome="#{item.url}" rendered="#{not loop.last}" title="Voltar para #{item.label}">
+                  #{item.label}
+               </h:link>
+               <h:outputText value="#{item.label}" rendered="#{loop.last}" styleClass="current-breadcrumb" />
+            </li>
+         </ui:repeat>
+      </ol>
+   </nav>
+</ui:component>
