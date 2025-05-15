@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS public."tb_user" (
     username VARCHAR(20) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     locale VARCHAR(5) NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_update_at TIMESTAMP,
     address VARCHAR(100) NULL,
     number SMALLINT NULL,

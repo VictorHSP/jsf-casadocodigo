@@ -3,7 +3,7 @@
 --changeset victor.hugo:changelog.changelog.010_create-table-order
 CREATE TABLE IF NOT EXISTS public."tb_order" (
     id BIGSERIAL PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_update_at TIMESTAMP NULL,
     totalValue DECIMAL(10, 2) NOT NULL,
     status VARCHAR(25) NOT NULL,

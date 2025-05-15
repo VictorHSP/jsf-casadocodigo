@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS public."tb_author" (
     url_photo VARCHAR(150) NULL,
     bio TEXT NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_update_at TIMESTAMP NULL,
     deleted BOOLEAN DEFAULT false
 );

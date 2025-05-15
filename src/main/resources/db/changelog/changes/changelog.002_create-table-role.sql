@@ -4,6 +4,6 @@
 CREATE TABLE IF NOT EXISTS public."tb_role" (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 --rollback DROP TABLE public."tb_role";

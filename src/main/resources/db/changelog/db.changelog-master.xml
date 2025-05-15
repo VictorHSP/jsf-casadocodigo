@@ -22,5 +22,9 @@
   <include file="/db/changelog/changes/changelog.014_create-table-book-details.sql" />
   <include file="/db/changelog/changes/changelog.015_insert-user.sql" />
   <include file="/db/changelog/changes/changelog.016_insert-user-roles.sql" />
+  <include file="/db/changelog/changes/changelog.017_insert-categories.sql" />
+  <include file="/db/changelog/changes/changelog.018_insert-sub-categories-for-category-programacao.sql" />
+  <include file="/db/changelog/changes/changelog.019_insert-sub-categories-for-category-mobile.sql" />
+  <include file="/db/changelog/changes/changelog.020_insert-sub-categories-for-category-front-end.sql" />
 
 </databaseChangeLog>

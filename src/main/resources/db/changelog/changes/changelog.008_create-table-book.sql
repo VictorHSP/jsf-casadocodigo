@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS public."tb_book" (
     isbn VARCHAR(32) NOT NULL,
     published_date DATE NULL,
     author_id BIGINT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_update_at TIMESTAMP NULL,
     FOREIGN KEY (author_id) REFERENCES tb_author(id)
             ON DELETE CASCADE
