@@ -5,15 +5,8 @@
   version="6.0">
 
   <welcome-file-list>
-    <welcome-file>login.xhtml</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>
-
-  <resource-ref>
-    <res-ref-name>PostgreSQL DataSource</res-ref-name>
-    <res-ref-name>jdbc/PostgresDS</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
 
   <context-param>
     <param-name>jakarta.faces.PROJECT_STAGE</param-name>
@@ -31,7 +24,7 @@
   </context-param>
 
   <context-param>
-    <param-name>javax.faces.CONFIG_FILES</param-name>
+    <param-name>jakarta.faces.CONFIG_FILES</param-name>
     <param-value>/faces-config.xml</param-value>
   </context-param>
 

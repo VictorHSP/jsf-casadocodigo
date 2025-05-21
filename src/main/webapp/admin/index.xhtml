@@ -1,11 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world ADMIN!"/>
-</f:view>
-</html>
+<ui:composition template="../template/admin/defaultLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets">
+
+    <ui:define name="title">
+        Backoffice - Admin
+    </ui:define>
+
+    <ui:define name="content">
+        <h1 style="margin: 1rem">
+            <h:outputText value="Backoffice - Administração"/>
+        </h1>
+
+        <div class="container">
+            <h:link outcome="/admin/author/index.xhtml" title="Autores">
+                <div class="box" id="authors">
+                    <h:graphicImage name="img/authors-icon.png"/>
+                    <h:outputText styleClass="box-title" value="Autores"/>
+                </div>
+            </h:link>
+
+            <h:link outcome="/admin/book/books.xhtml" title="Livros">
+                <div class="box" id="books">
+                    <h:graphicImage name="img/books-icon.png"/>
+                    <h:outputText styleClass="box-title" value="Livros"/>
+                </div>
+            </h:link>
+
+            <h:link outcome="/admin/category/categories.xhtml" title="Categorias">
+                <div class="box" id="categories">
+                    <h:graphicImage name="img/categories-icon.png"/>
+                    <h:outputText styleClass="box-title" value="Categorias"/>
+                </div>
+            </h:link>
+
+            <h:link outcome="/admin/sale/sales.xhtml" title="Gestão de Vendas">
+                <div class="box" id="sales">
+                    <h:graphicImage name="img/sales-icon.png"/>
+                    <h:outputText styleClass="box-title" value="Gestão de Vendas"/>
+                </div>
+            </h:link>
+
+            <h:link outcome="/admin/user/users.xhtml" title="Usuários">
+                <div class="box" id="users">
+                    <h:graphicImage name="img/users-icon.png"/>
+                    <h:outputText styleClass="box-title" value="Usuários"/>
+                </div>
+            </h:link>
+
+            <h:link outcome="/admin/report/reports.xhtml" title="Relatórios">
+                <div class="box" id="reports">
+                    <h:graphicImage name="img/reports-icon.png"/>
+                    <h:outputText styleClass="box-title" value="Relatórios"/>
+                </div>
+            </h:link>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

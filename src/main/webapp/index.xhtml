@@ -4,24 +4,7 @@
                 xmlns:ui="jakarta.faces.facelets">
 
     <ui:define name="content">
-        <h1>Bem-vindo à Minha Página!</h1>
-        <h:outputText value="Aqui vai o conteúdo principal." /> <br/>
-        <h:outputText value="#{userBean.user.id}" /> <br/>
-        <h:outputText value="#{userBean.user.name}" /> <br/>
-        <h:outputText value="#{userBean.user.username}" /> <br/>
-        <h:outputText value="#{userBean.user.email}" /> <br/>
-        <h:outputText value="#{userBean.user.password}" /> <br/>
-        <h:outputText value="#{userBean.user.locale}" /> <br/>
-        <h:outputText value="#{userBean.user.createdAt}" /> <br/>
-        <h:outputText value="#{userBean.user.lastUpdated}" /> <br/>
-        <h:outputText value="#{userBean.user.active}" /> <br/>
-        <hr/>
-        <ui:repeat value="#{userBean.user.roles}" var="role">
-            <h:outputText value="#{role.name}" /> <br/>
-        </ui:repeat>
-
-        <hr/>
-        <br/>
+        <h1>Bem-vindo à Vitrine!</h1>
 
         <h:form>
             <h:commandButton value="Logout" action="#{loginBean.logout()}"/>
@@ -29,5 +12,4 @@
 
 
     </ui:define>
-
 </ui:composition>

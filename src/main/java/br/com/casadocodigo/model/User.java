@@ -1,6 +1,7 @@
 package br.com.casadocodigo.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -17,23 +18,22 @@ import java.util.Set;
 @Table(name = "tb_user")
 public class User extends BaseEntity<Long> {
 
-  @Column(name = "name", length = 100)
+  @Column(name = "name",nullable = false, length = 100)
   private String name;
 
-  @Column(name = "username", length = 20, unique = true)
+  @Column(name = "username", length = 20, nullable = false, unique = true)
   private String username;
 
-  @Column(name = "email", length = 150, unique = true)
+  @Column(name = "email", length = 150, unique = true, nullable = false)
   private String email;
 
-  @Column(name = "password", length = 100)
+  @Column(name = "password", length = 100, nullable = false)
   private String password;
 
   @Column(name = "locale", length = 5)
   private String locale;
 
-  @Column(name = "created_at")
-  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "created_at", columnDefinition = "TIMESTAMP", insertable = false, updatable = false)
   private LocalDateTime createdAt;
 
   @Column(name = "last_update_at")
@@ -42,6 +42,9 @@ public class User extends BaseEntity<Long> {
 
   @Column(name = "active")
   private boolean active;
+
+  @Embedded
+  private UserPersonalInfo userPersonalInfo;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
@@ -53,8 +56,16 @@ public class User extends BaseEntity<Long> {
 
   public User() {}
 
-  public User(Long id, String name, String username, String email, String password, String locale,
-      LocalDateTime createdAt, LocalDateTime lastUpdated, boolean active) {
+  public User(Long id,
+      String name,
+      String username,
+      String email,
+      String password,
+      String locale,
+      LocalDateTime createdAt,
+      LocalDateTime lastUpdated,
+      boolean active,
+      UserPersonalInfo userPersonalInfo) {
     this.id = id;
     this.name = name;
     this.username = username;
@@ -64,6 +75,7 @@ public class User extends BaseEntity<Long> {
     this.createdAt = createdAt;
     this.lastUpdated = lastUpdated;
     this.active = active;
+    this.userPersonalInfo = userPersonalInfo;
   }
 
   @Override
@@ -146,5 +158,13 @@ public class User extends BaseEntity<Long> {
 
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
+  }
+
+  public UserPersonalInfo getUserPersonalInfo() {
+    return userPersonalInfo;
+  }
+
+  public void setUserPersonalInfo(UserPersonalInfo userPersonalInfo) {
+    this.userPersonalInfo = userPersonalInfo;
   }
 }

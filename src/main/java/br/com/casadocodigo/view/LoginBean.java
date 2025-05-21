@@ -19,7 +19,8 @@ public class LoginBean implements Serializable {
   private String username;
   private String password;
 
-  @Inject private SecurityContext securityContext;
+  @Inject
+  private SecurityContext securityContext;
 
   public String login() {
     var facesContext = FacesContext.getCurrentInstance();

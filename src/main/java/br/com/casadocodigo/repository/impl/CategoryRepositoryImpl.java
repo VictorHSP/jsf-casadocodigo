@@ -20,7 +20,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
   @Override
   public void save(Category entity) {
-    entityManager.persist(entity);
+    entityManager.merge(entity);
   }
 
   @Override

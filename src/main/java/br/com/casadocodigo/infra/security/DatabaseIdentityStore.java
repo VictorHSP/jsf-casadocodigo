@@ -37,7 +37,8 @@ public class DatabaseIdentityStore implements IdentityStore {
   }
 
   private boolean verifyPassword(String clientPassword, String databasePassword) {
-    return BCrypt.verifyer().verify(clientPassword.toCharArray(), databasePassword)
+    return BCrypt.verifyer()
+        .verify(clientPassword.toCharArray(), databasePassword)
         .verified;
   }
 }

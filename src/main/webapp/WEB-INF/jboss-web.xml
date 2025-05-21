@@ -1,3 +1,3 @@
 <jboss-web>
-  <context-root>/casadocodigo</context-root>
+  <context-root>/ebookofcode</context-root>
 </jboss-web>
