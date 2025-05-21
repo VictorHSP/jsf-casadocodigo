@@ -40,35 +40,35 @@
   </servlet-mapping>
 
 
-  <security-role>
-    <role-name>ADMIN</role-name>
-  </security-role>
+<!--  <security-role>-->
+<!--    <role-name>ADMIN</role-name>-->
+<!--  </security-role>-->
 
-  <security-role>
-    <role-name>CUSTOMER</role-name>
-  </security-role>
+<!--  <security-role>-->
+<!--    <role-name>CUSTOMER</role-name>-->
+<!--  </security-role>-->
 
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Admin Area</web-resource-name>
-      <url-pattern>/admin/*</url-pattern>
-    </web-resource-collection>
+<!--  <security-constraint>-->
+<!--    <web-resource-collection>-->
+<!--      <web-resource-name>Admin Area</web-resource-name>-->
+<!--      <url-pattern>/admin/*</url-pattern>-->
+<!--    </web-resource-collection>-->
 
-    <auth-constraint>
-      <role-name>ADMIN</role-name>
-    </auth-constraint>
-  </security-constraint>
+<!--    <auth-constraint>-->
+<!--      <role-name>ADMIN</role-name>-->
+<!--    </auth-constraint>-->
+<!--  </security-constraint>-->
 
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Customer Area</web-resource-name>
-      <url-pattern>/customer/*</url-pattern>
-    </web-resource-collection>
+<!--  <security-constraint>-->
+<!--    <web-resource-collection>-->
+<!--      <web-resource-name>Customer Area</web-resource-name>-->
+<!--      <url-pattern>/customer/*</url-pattern>-->
+<!--    </web-resource-collection>-->
 
-    <auth-constraint>
-      <role-name>ADMIN</role-name>
-      <role-name>CUSTOMER</role-name>
-    </auth-constraint>
-  </security-constraint>
+<!--    <auth-constraint>-->
+<!--      <role-name>ADMIN</role-name>-->
+<!--      <role-name>CUSTOMER</role-name>-->
+<!--    </auth-constraint>-->
+<!--  </security-constraint>-->
 
 </web-app>

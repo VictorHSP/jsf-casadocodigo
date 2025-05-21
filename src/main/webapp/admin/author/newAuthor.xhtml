@@ -82,7 +82,7 @@
                          value="#{authorFormBean.author.email}"
                          styleClass="#{component.valid ? '' : 'input-error'}"
                          rendered="#{authorFormBean.author eq null or authorFormBean.author.id eq null}">
-               <f:validator validatorId="br.com.casadocodigo.EmailValidator" />
+               <f:validator validatorId="br.com.ebookofcode.EmailValidator" />
             </h:inputText>
             <h:outputText value="#{authorFormBean.author.email}"
                           rendered="#{authorFormBean.author ne null and authorFormBean.author.id ne null}"
