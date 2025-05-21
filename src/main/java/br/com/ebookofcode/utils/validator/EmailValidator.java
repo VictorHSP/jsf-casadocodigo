@@ -7,7 +7,7 @@ import jakarta.faces.validator.FacesValidator;
 import jakarta.faces.validator.Validator;
 import jakarta.faces.validator.ValidatorException;
 
-@FacesValidator(value = "br.com.casadocodigo.EmailValidator", managed = true)
+@FacesValidator(value = "br.com.ebookofcode.EmailValidator", managed = true)
 public class EmailValidator implements Validator<String> {
 
   @Override

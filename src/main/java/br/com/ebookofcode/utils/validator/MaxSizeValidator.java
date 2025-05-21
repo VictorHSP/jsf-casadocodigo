@@ -8,7 +8,7 @@ import jakarta.faces.validator.Validator;
 import jakarta.faces.validator.ValidatorException;
 import jakarta.servlet.http.Part;
 
-@FacesValidator(value = "br.com.casadocodigo.MaxSizeValidator", managed = true)
+@FacesValidator(value = "br.com.ebookofcode.MaxSizeValidator", managed = true)
 public class MaxSizeValidator implements Validator<Part> {
 
   @Override
