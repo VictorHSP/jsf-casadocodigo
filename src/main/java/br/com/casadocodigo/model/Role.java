@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,8 +16,7 @@ public class Role extends BaseEntity<Long> {
   @Column(name = "name", length = 100)
   private String name;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "created_at")
+  @Column(name = "created_at", columnDefinition = "TIMESTAMP", insertable = false, updatable = false)
   private LocalDateTime createdAt;
 
   @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)

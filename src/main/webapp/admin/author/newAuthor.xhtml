@@ -1,0 +1,155 @@
+<ui:composition template="../../template/admin/defaultLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:pt="jakarta.faces.passthrough"
+                xmlns:f="jakarta.faces.core"
+                xmlns:o="http://omnifaces.org/ui">
+
+   <ui:define name="title">
+      <h:outputText value="Backoffice - Cadastro de Autores"/>
+   </ui:define>
+
+   <f:view>
+      <f:metadata>
+         <f:viewParam name="id" value="#{authorFormBean.idAuthor}" />
+         <f:viewAction action="#{authorFormBean.loadAuthorDetails()}" />
+      </f:metadata>
+   </f:view>
+
+   <ui:define name="content">
+      <h:outputScript library="js" name="admin/layout.js" />
+
+      <h1>
+         <h:outputText value="Cadastro de Autores"/>
+      </h1>
+
+      <ui:include src="/components/breadcrumb.xhtml" />
+
+      <h:form enctype="multipart/form-data" styleClass="form-container">
+         <div class="form-field full-width">
+            <h:panelGroup id="toast-messages" layout="block" styleClass="toast-container">
+               <!-- ERROR -->
+               <ui:fragment rendered="#{authorFormBean.globalErrorPresent}">
+                  <div class="alert show showAlert error">
+                     <span class="fas fa-exclamation-circle"/>
+                     <h:messages globalOnly="true" showDetail="false" showSummary="true" styleClass="msg" />
+                     <div class="close-btn" onclick="hideAlert(this.parentElement)" title="Fechar">
+                        <span class="fas fa-times" />
+                     </div>
+                  </div>
+               </ui:fragment>
+
+               <!-- WARN -->
+               <ui:fragment rendered="#{authorFormBean.globalWarnPresent}">
+                  <div class="alert show showAlert warn">
+                     <span class="fas fa-exclamation-triangle"/>
+                     <h:messages globalOnly="true" showDetail="false" showSummary="true" styleClass="msg" />
+                     <div class="close-btn" onclick="hideAlert(this.parentElement)" title="Fechar">
+                        <span class="fas fa-times" />
+                     </div>
+                  </div>
+               </ui:fragment>
+
+               <!-- INFO -->
+               <ui:fragment rendered="#{authorFormBean.globalInfoPresent}">
+                  <div class="alert show showAlert info">
+                     <span class="fas fa-info-circle"/>
+                     <h:messages globalOnly="true" showDetail="false" showSummary="true" styleClass="msg" />
+                     <div class="close-btn" onclick="hideAlert(this.parentElement)" title="Fechar">
+                        <span class="fas fa-times" />
+                     </div>
+                  </div>
+               </ui:fragment>
+            </h:panelGroup>
+         </div>
+
+         <div class="form-field">
+            <h:outputLabel id="labelName" for="name" value="Nome" />
+            <h:inputText id="name" label="Nome" pt:placeholder="Digite o nome do Autor" required="true"
+                         value="#{authorFormBean.author.name}"
+                         styleClass="#{component.valid ? '' : 'input-error'}"
+                         rendered="#{authorFormBean.author eq null or authorFormBean.author.id eq null}"/>
+            <h:outputText value="#{authorFormBean.author.name}"
+                          rendered="#{authorFormBean.author ne null and authorFormBean.author.id ne null}"
+                          styleClass="text-input-disabled" title="#{authorFormBean.author.name}"/>
+            <h:message styleClass="form-field-message" for="name"/>
+         </div>
+
+         <div class="form-field">
+            <h:outputLabel id="labelEmail" for="email" value="Email" />
+            <h:inputText id="email" label="Email" pt:placeholder="john.doe@mail.com" required="true"
+                         value="#{authorFormBean.author.email}"
+                         styleClass="#{component.valid ? '' : 'input-error'}"
+                         rendered="#{authorFormBean.author eq null or authorFormBean.author.id eq null}">
+               <f:validator validatorId="br.com.casadocodigo.EmailValidator" />
+            </h:inputText>
+            <h:outputText value="#{authorFormBean.author.email}"
+                          rendered="#{authorFormBean.author ne null and authorFormBean.author.id ne null}"
+                          styleClass="text-input-disabled" title="#{authorFormBean.author.email}"/>
+            <h:message styleClass="form-field-message" for="email"/>
+         </div>
+
+         <div class="form-field full-width">
+            <h:outputLabel id="labelBio" for="bio" value="Bio" />
+            <h:inputTextarea id="bio" label="Bio" pt:placeholder="Máximo 2000 caracteres" cols="60" rows="10"
+                             styleClass="#{component.valid ? '' : 'input-error'}"
+                             value="#{authorFormBean.author.bio}" required="true" >
+               <f:validateLength minimum="200" maximum="2000" />
+            </h:inputTextarea>
+            <h:message for="bio" styleClass="form-field-message"/>
+         </div>
+
+         <div class="form-field full-width">
+            <h:outputLabel id="labelPhoto" for="photo" styleClass="upload-btn" title="Escolha a foto do Autor" >
+               <i class="fas fa-upload"/>
+               <h:outputText value="Escolher Foto"/>
+            </h:outputLabel>
+            <o:inputFile id="photo"
+                         label="Foto"
+                         value="#{authorFormBean.authorPhoto}"
+                         accept="image/png, image/gif, image/jpeg"
+                         style="display: none;"
+                         acceptMessage="Formato inválido!"
+                         maxsize="#{2 * 1024 * 1024}"
+                         maxsizeMessage="Máximo de 2MB">
+               <f:ajax listener="#{authorFormBean.read()}" render="previewPhoto" />
+            </o:inputFile>
+            <h:message id="photoMessage" for="photo" styleClass="form-field-message" />
+         </div>
+
+         <div class="form-field full-width">
+            <div class="container-input-photo">
+               <h:panelGroup id="previewPhoto" layout="block"
+                             styleClass="img-area #{not empty authorFormBean.previewPhoto ? 'active' : ''}"
+                             pt:data-img="#{not empty authorFormBean.previewPhoto ? authorFormBean.previewPhotoFileName : ''}">
+                  <ui:fragment rendered="#{empty authorFormBean.previewPhoto}">
+                     <i class="far fa-image fa-lg icon"/>
+                     <h3>Foto do Autor</h3>
+                     <p>Tamanho da Imagem deve ser menor que <span>2MB</span></p>
+                  </ui:fragment>
+                  <o:graphicImage value="#{authorFormBean.previewPhoto}"
+                                  dataURI="true"
+                                  rendered="#{not empty authorFormBean.previewPhoto}"
+                                  alt="Preview da foto do Autor" />
+               </h:panelGroup>
+            </div>
+         </div>
+
+         <div class="form-field row-buttons">
+            <h:commandButton value="Salvar" title="Salvar" action="#{authorFormBean.save()}" styleClass="btn-form-save">
+               <f:ajax execute="@form" render="@form toast-messages" onevent="handleAjaxEvent" />
+            </h:commandButton>
+            <h:button value="Cancelar" title="Ir para Autores" styleClass="btn-form-cancel" outcome="/admin/author/index.xhtml?faces-redirect=true"/>
+         </div>
+
+         <div id="loading-overlay" class="hide">
+            <div id="loading-overlay-content">
+               <p id="loading-text">
+                  <h:outputText value="Salvando Autor"/>
+               </p>
+            </div>
+         </div>
+      </h:form>
+   </ui:define>
+</ui:composition>
