@@ -1,0 +1,188 @@
+<ui:composition template="../../template/admin/defaultLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                xmlns:pt="jakarta.faces.passthrough">
+
+    <ui:define name="title">
+        Backoffice - Autores
+    </ui:define>
+
+    <ui:define name="content">
+        <h:outputScript library="js" name="admin/layout.js" />
+
+        <h1 style="margin-bottom: 1rem">
+            <h:outputText value="Backoffice - Autores"/>
+        </h1>
+        <hr/>
+
+        <h:panelGroup id="toast-messages" layout="block" styleClass="toast-container">
+            <!-- ERROR -->
+            <ui:fragment rendered="#{authorBean.globalErrorPresent}">
+                <div class="alert show showAlert error">
+                    <span class="fas fa-exclamation-circle"/>
+                    <h:messages globalOnly="true" showDetail="false" showSummary="true" styleClass="msg" />
+                    <div class="close-btn" onclick="hideAlert(this.parentElement)" title="Fechar">
+                        <span class="fas fa-times" />
+                    </div>
+                </div>
+            </ui:fragment>
+        </h:panelGroup>
+
+        <ui:include src="/components/breadcrumb.xhtml" />
+
+        <aside class="sidebar" id="sidebar">
+            <i class="fas fa-times"
+               style="cursor: pointer; color: #161d34; font-size: 1.5rem; display: flex;
+               flex-direction: row-reverse; justify-content: right; margin-right: 8px;"
+               onclick="toggleSidebar()"/>
+            <h2>Filtros</h2>
+            <h:form style="display: flex; flex-direction: column; height: calc(100% - 60px);">
+                <div style="flex-grow: 1; overflow-y: auto;">
+                    <label>
+                        ID
+                    </label>
+                    <input/>
+
+                    <label>
+                        NOME
+                    </label>
+                    <input/>
+
+                    <label>
+                        EMAIL
+                    </label>
+                    <input/>
+                </div>
+
+                <div >
+                    <button>Aplicar Filtros</button>
+                </div>
+            </h:form>
+        </aside>
+
+
+        <style>
+            .filter-sidebar {
+                font-size: 2rem;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                color: white;
+                background-color: #1e90ff;
+                transition: background-color 200ms ease-in;
+            }
+
+            .filter-sidebar:hover {
+                background-color: #1873cc;
+            }
+
+            .export {
+                font-size: 18px;
+                padding: 0.8rem 0.8rem;
+                font-weight: 500;
+                cursor: pointer;
+                color: #1e90ff;
+                background-color: var(--clr-gray100);;
+                border: 1px solid #1e90ff;
+                border-radius: 5px;
+                transition: color 200ms ease-in,
+                border-color 200ms ease-in;
+            }
+
+            .export:hover {
+                color: #1873cc;
+                border-color: #1873cc;
+            }
+
+            /* Sidebar */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                right: -250px;
+                width: 250px;
+                height: 100%;
+                background-color: #f4f4f4;
+                border-left: 1px solid #ccc;
+                padding: 20px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            .sidebar.open {
+                right: 0;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 20px;
+                color: var(--clr-gray700);
+            }
+        </style>
+
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('open');
+            }
+
+        </script>
+        <h:form>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h:button value="Novo Autor" title="Novo Autor"
+                              styleClass="btn-default"
+                              outcome="/admin/author/newAuthor.xhtml?faces-redirect=true"/>
+
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-right: 2rem">
+                    <button type="button" class="export" onclick="document.getElementById('btnJSFAction').click()">
+                        <i class="fas fa-file-export"/> Exportar
+                    </button>
+                    <div class="filter-sidebar" onclick="toggleSidebar()" title="Filtros">
+                        <i class="fas fa-filter"/>
+                    </div>
+                </div>
+            </div>
+
+            <h:dataTable value="#{authorBean.authors}" var="author" border="1" width="85%">
+
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{author.id}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Nome</f:facet>
+                    <h:outputText value="#{author.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    <h:outputText value="#{author.email}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Ações</f:facet>
+                    <h:link value="Editar" outcome="/admin/author/newAuthor.xhtml" style="margin-right: 1rem">
+                        <f:param name="id" value="#{author.id}" />
+                    </h:link>
+
+                    <h:commandLink value="Excluir" />
+                </h:column>
+
+                <f:facet name="footer">
+                    <h:outputText value="Nenhum registro encontrado." rendered="#{empty authorBean.authors}"
+                                  style="display:grid; font-style: italic; justify-items: center"/>
+
+                    <div class="pagination-bottom">
+                        <h:commandButton value="Anterior" action="#{authorBean.previousPage}" styleClass="pagination-btn"
+                                         disabled="#{authorBean.firstPage}"/>
+
+                        <h:commandButton value="Próxima" action="#{authorBean.nextPage}" styleClass="pagination-btn"
+                                         disabled="#{authorBean.lastPage}"/>
+                    </div>
+                </f:facet>
+            </h:dataTable>
+
+
+        </h:form>
+    </ui:define>
+</ui:composition>

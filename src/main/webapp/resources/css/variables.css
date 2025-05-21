@@ -7,9 +7,12 @@
   --clr-gray500: #4f546c;
   --clr-gray600: #2a324b;
   --clr-gray700: #161d34;
-  --clr-orange-bg: #FD8325;
-  --clr-orange-bg500: #a75700;
+  --clr-green-bg: #002e34;
+  --clr-green-hover: #10745c;
   --clr-link: #2962ff;
+  --clr-primary: #81d4fa;
+  --clr-primary-light: #e1f5fe;
+  --clr-primary-dark: #4fc3f7;
 
   /* Border Radius */
   --border-radius: 0.2rem;
