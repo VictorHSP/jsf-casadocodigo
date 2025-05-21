@@ -1,9 +1,10 @@
 services:
   postgres:
-    image: postgres
+    image: postgres:17
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+      POSTGRES_DB: casadocodigo
     ports:
       - "5432:5432"
     restart: unless-stopped
@@ -12,5 +13,16 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-
-
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DEFAULT_REGION=us-east-1
+      - HOSTNAME_EXTERNAL=localhost
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
