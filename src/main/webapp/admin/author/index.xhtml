@@ -31,101 +31,8 @@
         </h:panelGroup>
 
         <ui:include src="/components/breadcrumb.xhtml" />
+        <ui:include src="/components/filter.xhtml" />
 
-        <aside class="sidebar" id="sidebar">
-            <i class="fas fa-times"
-               style="cursor: pointer; color: #161d34; font-size: 1.5rem; display: flex;
-               flex-direction: row-reverse; justify-content: right; margin-right: 8px;"
-               onclick="toggleSidebar()"/>
-            <h2>Filtros</h2>
-            <h:form style="display: flex; flex-direction: column; height: calc(100% - 60px);">
-                <div style="flex-grow: 1; overflow-y: auto;">
-                    <label>
-                        ID
-                    </label>
-                    <input/>
-
-                    <label>
-                        NOME
-                    </label>
-                    <input/>
-
-                    <label>
-                        EMAIL
-                    </label>
-                    <input/>
-                </div>
-
-                <div >
-                    <button>Aplicar Filtros</button>
-                </div>
-            </h:form>
-        </aside>
-
-
-        <style>
-            .filter-sidebar {
-                font-size: 2rem;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                color: white;
-                background-color: #1e90ff;
-                transition: background-color 200ms ease-in;
-            }
-
-            .filter-sidebar:hover {
-                background-color: #1873cc;
-            }
-
-            .export {
-                font-size: 18px;
-                padding: 0.8rem 0.8rem;
-                font-weight: 500;
-                cursor: pointer;
-                color: #1e90ff;
-                background-color: var(--clr-gray100);;
-                border: 1px solid #1e90ff;
-                border-radius: 5px;
-                transition: color 200ms ease-in,
-                border-color 200ms ease-in;
-            }
-
-            .export:hover {
-                color: #1873cc;
-                border-color: #1873cc;
-            }
-
-            /* Sidebar */
-            .sidebar {
-                position: fixed;
-                top: 0;
-                right: -250px;
-                width: 250px;
-                height: 100%;
-                background-color: #f4f4f4;
-                border-left: 1px solid #ccc;
-                padding: 20px;
-                transition: right 0.3s ease;
-                z-index: 1000;
-            }
-
-            .sidebar.open {
-                right: 0;
-            }
-
-            .sidebar h2 {
-                margin-bottom: 20px;
-                color: var(--clr-gray700);
-            }
-        </style>
-
-        <script>
-            function toggleSidebar() {
-                const sidebar = document.getElementById('sidebar');
-                sidebar.classList.toggle('open');
-            }
-
-        </script>
         <h:form>
             <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h:button value="Novo Autor" title="Novo Autor"
@@ -133,7 +40,7 @@
                               outcome="/admin/author/newAuthor.xhtml?faces-redirect=true"/>
 
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-right: 2rem">
-                    <button type="button" class="export" onclick="document.getElementById('btnJSFAction').click()">
+                    <button type="button" class="export" title="Exportar" onclick="document.getElementById('btnJSFAction').click()">
                         <i class="fas fa-file-export"/> Exportar
                     </button>
                     <div class="filter-sidebar" onclick="toggleSidebar()" title="Filtros">

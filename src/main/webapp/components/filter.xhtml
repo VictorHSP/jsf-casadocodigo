@@ -1,0 +1,47 @@
+<!-- /components/filter.xhtml -->
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="jakarta.faces.facelets"
+              xmlns:h="jakarta.faces.html">
+
+   <script>
+      function toggleSidebar() {
+         const sidebar = document.getElementById('sidebar');
+         sidebar.classList.toggle('open');
+      }
+   </script>
+   <h:outputStylesheet library="css" name="admin/filter.css" />
+
+   <aside class="sidebar" id="sidebar">
+      <i class="fas fa-times" title="Fechar"
+         style="cursor: pointer; color: #161d34; font-size: 1.5rem; display: flex;
+               flex-direction: row-reverse; justify-content: right; margin-right: 12px;"
+         onclick="toggleSidebar()"/>
+      <h2>Filtros</h2>
+      <hr/>
+
+      <h:form styleClass="form-filter">
+         <div style="flex-grow: 1; overflow-y: auto;">
+
+            <div>
+               <h:outputLabel value="ID" for="id"/>
+               <h:inputText id="id"  />
+            </div>
+
+            <div>
+               <h:outputLabel value="Nome" for="name"/>
+               <h:inputText id="name"  />
+            </div>
+
+            <div>
+               <h:outputLabel value="Email" for="email"/>
+               <h:inputText id="email"  />
+            </div>
+
+         </div>
+
+         <div style="margin-bottom: 5rem">
+            <button>Aplicar Filtros</button>
+         </div>
+      </h:form>
+   </aside>
+</ui:component>

@@ -173,7 +173,7 @@
         </executions>
         <configuration>
           <changeLogFile>db/changelog/db.changelog-master.xml</changeLogFile>
-          <url>jdbc:postgresql://localhost:5432/casadocodigo</url>
+          <url>jdbc:postgresql://localhost:5432/ebookofcode</url>
           <username>root</username>
           <password>root</password>
           <driver>org.postgresql.Driver</driver>

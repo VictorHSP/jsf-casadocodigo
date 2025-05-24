@@ -201,7 +201,7 @@ footer {
   margin: 2rem 0.2rem 2rem 0.2rem;
   padding: 0.75rem 2rem;
   display: inline-block;
-  background-color: #74b68a;
+  background-color: var(--crl-btn-default-green);
   color: var(--clr-gray100);
   font-family: inherit;
   font-weight: 600;
@@ -245,7 +245,7 @@ footer {
 }
 
 .btn-default:hover {
-  background-color: #4b6a56;
+  background-color: var(--crl-btn-default-green-hover);
 }
 
 .btn-form-save:hover {
@@ -318,7 +318,7 @@ thead {
 }
 
 th {
-  background-color: #009879;
+  background-color: #734561;
   padding: 1rem 2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
@@ -670,7 +670,7 @@ tr:nth-child(even) {
 .upload-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #74b68a;
+  background-color: var(--crl-btn-default-green);
   color: white;
   border: none;
   border-radius: 8px;
@@ -685,7 +685,7 @@ tr:nth-child(even) {
 }
 
 .upload-btn:hover {
-  background-color: #4b6a56;
+  background-color: var(--crl-btn-default-green-hover);
 }
 
 
@@ -705,4 +705,37 @@ input[disabled] {
   background-color: #f0f0f0;
   cursor: not-allowed;
   box-shadow: 1px 2px 2px rgba(42, 50, 75, 0.5);
+}
+
+
+.export {
+  font-size: 18px;
+  padding: 0.6rem 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #1e90ff;
+  background-color: var(--clr-gray100);
+  border: 1px solid #1e90ff;
+  border-radius: 5px;
+  transition: color 200ms ease-in,
+  border-color 200ms ease-in;
+}
+
+.export:hover {
+  color: #1873cc;
+  border-color: #1873cc;
+  background-color: var(--clr-gray150);
+}
+
+.filter-sidebar {
+  font-size: 1.5rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  color: white;
+  background-color: #1e90ff;
+  transition: background-color 200ms ease-in;
+}
+
+.filter-sidebar:hover {
+  background-color: #1873cc;
 }
