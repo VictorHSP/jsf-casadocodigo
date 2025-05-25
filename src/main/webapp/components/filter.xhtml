@@ -1,7 +1,8 @@
 <!-- /components/filter.xhtml -->
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
               xmlns:ui="jakarta.faces.facelets"
-              xmlns:h="jakarta.faces.html">
+              xmlns:h="jakarta.faces.html"
+              xmlns:f="jakarta.faces.core">
 
    <script>
       function toggleSidebar() {
@@ -22,25 +23,34 @@
       <h:form styleClass="form-filter">
          <div style="flex-grow: 1; overflow-y: auto;">
 
-            <div>
+            <div class="form-field full-width">
                <h:outputLabel value="ID" for="id"/>
-               <h:inputText id="id"  />
+               <h:inputText id="id" autocomplete="off" value="#{filterBean.filter.id}"  >
+                  <f:convertNumber integerOnly="true" />
+               </h:inputText>
+               <h:message for="id" styleClass="form-field-message"/>
             </div>
 
-            <div>
+            <div class="form-field full-width">
                <h:outputLabel value="Nome" for="name"/>
-               <h:inputText id="name"  />
+               <h:inputText id="name" autocomplete="off" value="#{filterBean.filter.name}" />
             </div>
 
-            <div>
+            <div class="form-field full-width">
                <h:outputLabel value="Email" for="email"/>
-               <h:inputText id="email"  />
+               <h:inputText id="email" autocomplete="off" value="#{filterBean.filter.email}" >
+                  <f:validator validatorId="br.com.ebookofcode.EmailValidator" />
+               </h:inputText>
+               <h:message for="email" styleClass="form-field-message" />
             </div>
 
          </div>
 
          <div style="margin-bottom: 5rem">
-            <button>Aplicar Filtros</button>
+            <h:commandButton styleClass="btn-default btn-filter" value="Aplicar Filtros" onclick=""
+               action="#{filterBean.filter()}" title="Aplicar Filtros" >
+               <f:ajax execute="@form" render="@form#{dataTableTarget}" />
+            </h:commandButton>
          </div>
       </h:form>
    </aside>

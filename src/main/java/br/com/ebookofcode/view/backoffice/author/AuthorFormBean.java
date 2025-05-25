@@ -12,14 +12,14 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.Part;
 import java.io.IOException;
-import java.io.Serializable;
+
 import org.omnifaces.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Named
 @ViewScoped
-public class AuthorFormBean extends BaseBean implements Serializable {
+public class AuthorFormBean extends BaseBean {
 
   private Author author;
   private Long idAuthor;
@@ -28,7 +28,6 @@ public class AuthorFormBean extends BaseBean implements Serializable {
   private String contentType;
   private Long size = 0L;
   private Part authorPhoto;
-
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AuthorFormBean.class);
 
@@ -46,6 +45,7 @@ public class AuthorFormBean extends BaseBean implements Serializable {
 
   public void save() {
     try {
+      LOGGER.info("Saving author...");
       authorService.save(
           author,
           new FileUploadDTO(previewPhoto, previewPhotoFileName, contentType, size)
@@ -81,6 +81,7 @@ public class AuthorFormBean extends BaseBean implements Serializable {
   }
 
   private void cleanForm() {
+    LOGGER.info("Cleaning form Author");
     author = new Author();
     previewPhotoFileName = null;
     contentType = null;

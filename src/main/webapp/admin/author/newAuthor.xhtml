@@ -70,6 +70,8 @@
                          value="#{authorFormBean.author.name}"
                          styleClass="#{component.valid ? '' : 'input-error'}"
                          rendered="#{authorFormBean.author eq null or authorFormBean.author.id eq null}"/>
+
+            <!-- Renderiza apenas quando for atualizar um autor | Nome nao pode ser alterado -->
             <h:outputText value="#{authorFormBean.author.name}"
                           rendered="#{authorFormBean.author ne null and authorFormBean.author.id ne null}"
                           styleClass="text-input-disabled" title="#{authorFormBean.author.name}"/>
@@ -84,6 +86,8 @@
                          rendered="#{authorFormBean.author eq null or authorFormBean.author.id eq null}">
                <f:validator validatorId="br.com.ebookofcode.EmailValidator" />
             </h:inputText>
+
+            <!-- Renderiza apenas quando for atualizar um autor | Email nao pode ser alterado -->
             <h:outputText value="#{authorFormBean.author.email}"
                           rendered="#{authorFormBean.author ne null and authorFormBean.author.id ne null}"
                           styleClass="text-input-disabled" title="#{authorFormBean.author.email}"/>
@@ -107,8 +111,9 @@
             </h:outputLabel>
             <o:inputFile id="photo"
                          label="Foto"
+                         transient="true"
                          value="#{authorFormBean.authorPhoto}"
-                         accept="image/png, image/gif, image/jpeg"
+                         accept="image/png, image/gif, image/jpeg, image/webp"
                          style="display: none;"
                          acceptMessage="Formato inválido!"
                          maxsize="#{2 * 1024 * 1024}"

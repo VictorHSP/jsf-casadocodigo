@@ -28,3 +28,56 @@
     height: calc(100% - 60px);
     margin: 2rem 0
 }
+
+.btn-filter {
+    font-size: larger;
+    padding: 1rem 2.5rem;
+    background-color: #2196f3;
+}
+
+.btn-filter:hover {
+    background-color: #4682b4;
+}
+
+.form-field-message {
+    position: absolute;
+    bottom: -1.4rem;
+    left: 0;
+    font-size: 0.9rem;
+    color: #f44336;
+}
+
+.form-field.full-width {
+    flex: 1 1 100%;
+}
+
+.form-field label {
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.form-field input[type="text"],
+.form-field select,
+.form-field textarea {
+    height: 100%;
+    font-family: inherit;
+    font-weight: inherit;
+    outline: none;
+    padding: 0.5rem;
+    border: 1px solid var(--clr-gray400);
+    border-radius: 4px;
+    transition: border-color 200ms ease-in;
+}
+
+.form-field input[type="text"]:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+    border-color: var(--clr-primary);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: var(--clr-primary-dark);
+    box-shadow: 1px 1px 1px 0 #a6d5fa;
+}

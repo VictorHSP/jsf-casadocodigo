@@ -713,17 +713,17 @@ input[disabled] {
   padding: 0.6rem 0.6rem;
   font-weight: 500;
   cursor: pointer;
-  color: #1e90ff;
+  color: #00a86b;
   background-color: var(--clr-gray100);
-  border: 1px solid #1e90ff;
+  border: 1px solid #00a86b;
   border-radius: 5px;
   transition: color 200ms ease-in,
   border-color 200ms ease-in;
 }
 
 .export:hover {
-  color: #1873cc;
-  border-color: #1873cc;
+  color: #2e8b57;
+  border-color: #2e8b57;
   background-color: var(--clr-gray150);
 }
 
@@ -732,10 +732,10 @@ input[disabled] {
   padding: 0.4rem 0.8rem;
   cursor: pointer;
   color: white;
-  background-color: #1e90ff;
+  background-color: #00a86b;
   transition: background-color 200ms ease-in;
 }
 
 .filter-sidebar:hover {
-  background-color: #1873cc;
+  background-color: #2e8b57;
 }

@@ -2,8 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="jakarta.faces.html"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:f="jakarta.faces.core"
-                xmlns:pt="jakarta.faces.passthrough">
+                xmlns:f="jakarta.faces.core">
 
     <ui:define name="title">
         Backoffice - Autores
@@ -31,7 +30,11 @@
         </h:panelGroup>
 
         <ui:include src="/components/breadcrumb.xhtml" />
-        <ui:include src="/components/filter.xhtml" />
+
+        <ui:include src="/components/filter.xhtml" >
+            <ui:param name="dataTableTarget" value=":dataTableAuthors"/>
+            <ui:param name="filterBean" value="#{authorBean}"/>
+        </ui:include>
 
         <h:form>
             <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -49,46 +52,51 @@
                 </div>
             </div>
 
-            <h:dataTable value="#{authorBean.authors}" var="author" border="1" width="85%">
+            <h:panelGroup id="dataTableAuthors">
+                <h:dataTable value="#{authorBean.authors}" var="author" border="1" width="85%">
 
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    <h:outputText value="#{author.id}" />
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{author.id}" />
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">Nome</f:facet>
-                    <h:outputText value="#{author.name}" />
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">Nome</f:facet>
+                        <h:outputText value="#{author.name}" />
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">Email</f:facet>
-                    <h:outputText value="#{author.email}" />
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        <h:outputText value="#{author.email}" />
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">Ações</f:facet>
-                    <h:link value="Editar" outcome="/admin/author/newAuthor.xhtml" style="margin-right: 1rem">
-                        <f:param name="id" value="#{author.id}" />
-                    </h:link>
+                    <h:column>
+                        <f:facet name="header">Ações</f:facet>
+                        <h:link value="Editar" outcome="/admin/author/newAuthor.xhtml" style="margin-right: 1rem">
+                            <f:param name="id" value="#{author.id}" />
+                        </h:link>
 
-                    <h:commandLink value="Excluir" />
-                </h:column>
+                        <h:commandLink value="Excluir" />
+                    </h:column>
 
-                <f:facet name="footer">
-                    <h:outputText value="Nenhum registro encontrado." rendered="#{empty authorBean.authors}"
-                                  style="display:grid; font-style: italic; justify-items: center"/>
+                    <f:facet name="footer">
+                        <h:outputText value="Nenhum registro encontrado." rendered="#{empty authorBean.authors}"
+                                      style="display:grid; font-style: italic; justify-items: center"/>
 
-                    <div class="pagination-bottom">
-                        <h:commandButton value="Anterior" action="#{authorBean.previousPage}" styleClass="pagination-btn"
-                                         disabled="#{authorBean.firstPage}"/>
+                        <div class="pagination-bottom">
+                            <h:commandButton value="Anterior" action="#{authorBean.previousPage}" styleClass="pagination-btn"
+                                             disabled="#{authorBean.firstPage}">
+                                <f:ajax execute="@form" render="@form:dataTableAuthors"/>
+                            </h:commandButton>
 
-                        <h:commandButton value="Próxima" action="#{authorBean.nextPage}" styleClass="pagination-btn"
-                                         disabled="#{authorBean.lastPage}"/>
-                    </div>
-                </f:facet>
-            </h:dataTable>
-
+                            <h:commandButton value="Próxima" action="#{authorBean.nextPage}" styleClass="pagination-btn"
+                                             disabled="#{authorBean.lastPage}">
+                                <f:ajax execute="@form" render="@form:dataTableAuthors"/>
+                            </h:commandButton>
+                        </div>
+                    </f:facet>
+                </h:dataTable>
+            </h:panelGroup>
 
         </h:form>
     </ui:define>
